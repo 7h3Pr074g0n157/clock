@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .dial {
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      .hours {
+        width: 100px;
+        height: 5px;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: left;
+
+        z-index: 1;
+      }
+
+      .minutes {
+        width: 120px;
+        height: 4px;
+        background-color: blue;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: left;
+        z-index: 1;
+      }
+
+      .seconds {
+        width: 145px;
+        height: 3px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: left;
+        z-index: 1;
+      }
+
+      .clock {
+        position: absolute;
+        top: 310px;
+        left: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dial">
+      <div class="hours"></div>
+      <div class="minutes"></div>
+      <div class="seconds"></div>
+    </div>
+    <div class="clock"></div>
+    <script>
+      var date,
+        hours,
+        minutes,
+        seconds,
+        clock = document.querySelector('.clock'),
+        hourHand = document.querySelector('.hours'),
+        minuteHand = document.querySelector('.minutes'),
+        secondHand = document.querySelector('.seconds');
+
+      window.setInterval(() => {
+        date = new Date();
+        hours = date.getHours();
+        minutes = date.getMinutes();
+        seconds = date.getSeconds();
+
+        hourHand.style.transform = `rotate(${-90 + (360 / 12) * hours}deg)`;
+        minuteHand.style.transform = `rotate(${-90 + (360 / 60) * minutes}deg)`;
+        secondHand.style.transform = `rotate(${-90 + (360 / 60) * seconds}deg`;
+        clock.textContent = hours + ':' + minutes + ' :' + seconds;
+      });
+    </script>
+  </body>
+</html>
